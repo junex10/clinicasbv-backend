@@ -1,7 +1,7 @@
 enum COMPANY_INFORMATION {
-	NAME = 'Aldana Laser',
+	NAME = 'ClinicaSBV',
 	ID = 1,
-	DESCRIPTION = 'Aplicación para consultoria de comestologia'
+	DESCRIPTION = 'Sistema para consultoria y administración de la clinica'
 }
 enum LEVELS {
 	ADMIN = 1,

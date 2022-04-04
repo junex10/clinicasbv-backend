@@ -11,6 +11,8 @@ const SequelizeConfig = require('./config');
 import { MAIL_CONFIG } from './utils/mailer';
 import * as path from 'path';
 
+// Modulo
+import { AuthModule } from './controllers/web/auth/auth.module';
 
 // Models
 import {
@@ -48,6 +50,7 @@ import {
         extension: 'hbs',
       },
     }),
+    AuthModule,
     SocketModule,
 
   ],

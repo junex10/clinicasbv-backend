@@ -20,8 +20,4 @@ export class SocketController {
    constructor(private readonly socketService: SocketService) {
 
    }
-   @SubscribeMessage(SocketEvents.CONSULTATIONS.NEW_CONSULTATION)
-   async newAppointment() {
-      this.server.emit(SocketEvents.CONSULTATIONS.RECEIVED_CONSULTATION);
-   }
 }
