@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as moment from 'moment';
-import { ValidationPipe, HttpStatus, ValidationError, UnprocessableEntityException } from '@nestjs/common';
+import { ValidationPipe, ValidationError, UnprocessableEntityException } from '@nestjs/common';
 import { Constants } from 'src/utils';
 
 Date.prototype.toJSON = function () {

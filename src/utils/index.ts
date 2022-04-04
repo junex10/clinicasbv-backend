@@ -8,6 +8,7 @@ import { MAIL_CONFIG } from './mailer';
 import Globals from './globals';
 import HttpExceptionFilter from './error';
 import QrCode from './qr-code';
+import JWTAuth from './jwt';
 
 export {
 	SocketEvents,
@@ -19,5 +20,6 @@ export {
 	MAIL_CONFIG,
 	Globals,
 	HttpExceptionFilter,
-	QrCode
+	QrCode,
+	JWTAuth
 }
