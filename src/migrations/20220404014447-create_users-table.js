@@ -1,6 +1,6 @@
 'use strict';
 
-const constants = require('./../seeders/constants');
+const constants = require('../seeders/constants');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -21,7 +21,7 @@ module.exports = {
       level_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { 
+        references: {
           model: 'levels',
           key: 'id'
         }
@@ -53,6 +53,16 @@ module.exports = {
       photo: {
         type: Sequelize.STRING,
         allowNull: true
+      },
+      logged_in: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
+      },
+      verified: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
       },
       status: constants.STATUS,
       ...constants.DATES_CONTROL

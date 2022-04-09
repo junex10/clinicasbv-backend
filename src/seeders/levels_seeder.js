@@ -10,13 +10,23 @@ module.exports = {
       },
       {
         id: 2,
-        name: 'Moderador',
-        code: 'user/moderator'
+        name: 'Jefa',
+        code: 'user/boss'
       },
       {
         id: 3,
-        name: 'Cliente',
-        code: 'user/client'
+        name: 'Doctor',
+        code: 'user/doctor'
+      },
+      {
+        id: 4,
+        name: 'Secretaria',
+        code: 'user/secretary'
+      },
+      {
+        id: 5,
+        name: 'Paciente',
+        code: 'user/patient'
       }
     ];
     return queryInterface.bulkInsert('levels',items);

@@ -10,14 +10,11 @@ module.exports = {
     const items = [
         {
             id: 1,
-            name: 'Aldana Laser',
+            name: 'ClinicaSBV',
             email: "prueba@mail.com",
             client: 'Carlo Pérez',
             document: 'J - 3652148',
-            phone: '0424-3625143',
-            account: '0321-2541-6985-1452',
-            bank: 'Mercantil',
-            account_type: 'Corriente'
+            phone: '0000-0000000'
         }
     ];
 

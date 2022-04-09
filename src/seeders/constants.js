@@ -1,10 +1,6 @@
 const Sequelize = require('sequelize');
 
 module.exports = {
-  APPOINTMENTS_CONTROL: {
-    AVAILABLE: 1,
-    DISABLED: 0
-  },
   PRIMARY_KEY: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -30,7 +26,6 @@ module.exports = {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  CIVIL_STATES: ['single', 'married'],
   SEEDERS: {
     COMMISSIONS_STATUS: {
       AVAILABLE: 1,
@@ -61,6 +56,17 @@ module.exports = {
     GOOGLE: {
       ACCESS: 1,
       NOT_ACCESS: 0
+    },
+    LEVELS: {
+      ADMIN: 1,
+      BOSS: 2,
+      SECRETARY: 3,
+      DOCTOR: 4,
+      PATIENT: 5,
+    },
+    STATUS: {
+      ACTIVATED: 1,
+      DISABLED: 0
     }
   }
 }
