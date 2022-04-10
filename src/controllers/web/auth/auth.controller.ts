@@ -1,4 +1,4 @@
-import { Controller, Post, Res, HttpStatus, Body, UseInterceptors, UploadedFile, Param, Get, UnprocessableEntityException } from '@nestjs/common';
+import { Controller, Post, Res, HttpStatus, Body, UseInterceptors, UploadedFile, Param, Get, UnprocessableEntityException, UseFilters } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
@@ -11,9 +11,10 @@ import {
 	VerifyUserDTO
 } from './auth.entity';
 import { AuthService } from './auth.service';
-import { Constants, Hash, UploadFile } from 'src/utils';
+import { Constants, Hash, UploadFile, JWTAuth, HttpExceptionFilter } from 'src/utils';
 
 @ApiTags('Auth')
+@UseFilters(HttpExceptionFilter)
 @Controller('api/auth')
 export class AuthController {
 
@@ -33,14 +34,10 @@ export class AuthController {
 			}
 
 			if (await Hash.check(request.password, user.password)) {
-				if (user.level_id == Constants.LEVELS.ADMIN) {
-					return response.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
-						error: errorMessage
-					});
-				}
 
+				const token = JWTAuth.createToken({ user });
 				return response.status(HttpStatus.OK).json({
-					user
+					...token
 				});
 			}
 			else {

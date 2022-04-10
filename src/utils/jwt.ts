@@ -1,8 +1,22 @@
+import * as jwt from 'jsonwebtoken';
+
 class JWTAuth {
 
-    signIn = (data: string) => {
+    createToken = (data: any) => {
         const key = process.env.API_KEY;
-        console.log(key)
+        const token = jwt.sign(data, key, {
+            expiresIn: 60 * 60 * 24,
+            algorithm: "HS256"
+        });
+        return { token };
+    }
+
+    readToken = (token: any) => {
+
+        const key = process.env.API_KEY;
+        const data = jwt.verify(token, key);
+
+        return data;
     }
 }
 export default new JWTAuth();

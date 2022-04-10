@@ -1,9 +1,9 @@
 import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { User, PasswordReset, Modules } from "../../../models";
+import { User, PasswordReset, Modules } from "src/models";
 import { MailerService } from '@nestjs-modules/mailer';
 import { RecoverParams, ResetParams, RegisterParams } from './auth.entity';
-import { Constants, Hash, Globals } from '../../../utils';
+import { Constants, Hash, Globals } from 'src/utils';
 import * as moment from 'moment';
 
 @Injectable()
@@ -112,11 +112,11 @@ export class AuthService {
 			phone: request.phone,
 			email: request.email,
 			password: Hash.makeSync(request.password),
-			level_id: request.level_id || Constants.LEVELS.CLIENT,
+			level_id: request.level_id || Constants.LEVELS.PATIENT,
 			photo: file ? ('users/' + file.filename) : null,
 			confirmUrl: await this.generateURL(),
 		});
-		try {
+		/*try {
 			await this.mailerService.sendMail({
 				to: user.email,
 				subject: 'Confirmación de cuenta | ' + process.env.MAIL_FROM_NAME,
@@ -129,7 +129,7 @@ export class AuthService {
 		}
 		catch (e) {
 			console.log(e);
-		}
+		}*/
 		return user;
 	}
 

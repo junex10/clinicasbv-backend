@@ -6,10 +6,6 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
       id: constants.PRIMARY_KEY,
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       email: {
         type: Sequelize.STRING,
         allowNull: false

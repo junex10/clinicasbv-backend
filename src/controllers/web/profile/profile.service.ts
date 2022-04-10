@@ -26,7 +26,7 @@ export class ProfileService {
         const update = await this.userModel.update(
             {
                 name: request.name,
-                lastname: request.lastname || user.lastname,
+                lastname: request.lastname,
                 email: request.email,
                 phone: request.phone !== 'null' ? request.phone : null,
                 photo: file !== undefined ? ('users/' + file.filename) : user.photo,

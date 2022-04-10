@@ -8,11 +8,6 @@ import {
   tableName: 'users'
 })
 export class User extends Model {
-    @Column
-    name: string;
-
-    @Column
-    lastname: string;
 
     @Column
     email: string;
@@ -37,30 +32,6 @@ export class User extends Model {
 
     @Column
     photo: string;
-
-    @Column
-    birthdate: Date;
-
-    @Column
-    loyalty_points: string;
-
-    @Column 
-    occupation: string;
-
-    @Column
-    civil_state: string;
-
-    @Column
-    age: number;
-
-    @Column
-    document: string;
-
-    @Column
-    phone: string;
-
-    @Column
-    confirmUrl: string;
 
     @Column
     verified: number;
