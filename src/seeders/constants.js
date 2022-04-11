@@ -27,25 +27,16 @@ module.exports = {
     allowNull: false
   },
   SEEDERS: {
-    COMMISSIONS_STATUS: {
-      AVAILABLE: 1,
-      DISABLED: 0
-    },
     USER_VERIFIED: {
       VERIFIED: 1,
       NO_VERIFIED: 0
     },
-    TREATMENTS_STATUS: {
+    MODULES_STATUS: {
       AVAILABLE: 1,
       DISABLED: 0
     },
-    INDICATIONS_TYPE: {
-      AVAILABLE: 1,
-      DISABLED: 0
-    },
-    CHAT_SESSION: {
-      READED: 1,
-      UNREAD: 0
+    MODULES: {
+      PROFILE: 1
     }
   },
   USERS: {

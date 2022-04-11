@@ -37,7 +37,10 @@ export class AuthController {
 
 				const token = JWTAuth.createToken({ user });
 				return response.status(HttpStatus.OK).json({
-					...token
+					user: {
+						user,
+						...token
+					}
 				});
 			}
 			else {

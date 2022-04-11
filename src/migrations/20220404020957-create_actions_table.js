@@ -6,21 +6,21 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('actions', {
       id: constants.PRIMARY_KEY,
-      action_id: {
+      module_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: { 
-          model: 'actions',
+          model: 'modules',
           key: 'id'
         }
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: { 
-          model: 'users',
-          key: 'id'
-        }
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      code: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       ...constants.DATES_CONTROL
     });

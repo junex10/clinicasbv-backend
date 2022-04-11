@@ -8,13 +8,8 @@ module.exports = {
     const items = [
       {
         id: 1,
-        name: 'Nuevo mensaje',
-        code: 'chat/new-message'
-      },
-      {
-        id: 2,
-        name: 'Nueva cita',
-        code: 'appointment/new-appointment'
+        name: 'Nuevo usuario',
+        code: 'auth/new-user'
       }
     ];
     return queryInterface.bulkInsert('notification_types',items);

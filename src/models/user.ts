@@ -34,7 +34,13 @@ export class User extends Model {
     photo: string;
 
     @Column
+    logged_in: number;
+
+    @Column
     verified: number;
+
+    @Column
+    status: number;
 
     @CreatedAt
     @Column
