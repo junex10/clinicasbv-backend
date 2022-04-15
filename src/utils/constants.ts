@@ -24,6 +24,10 @@ export default {
 		USER_VERIFIED: {
 			VERIFIED: 1,
 			NO_VERIFIED: 0
+		},
+		LOGGED_IN: {
+			IN: 1,
+			OUT: 0
 		}
 	},
 	NOTIFICATIONS: {

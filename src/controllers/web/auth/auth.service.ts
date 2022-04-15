@@ -18,8 +18,8 @@ export class AuthService {
 
 	}
 
-	findUserVerified = (email: string) => (
-		this.userModel.findOne({
+	findUserVerified = async (email: string) => {
+		const user = await this.userModel.findOne({
 			include: [{
 				model: Permissions
 			}],
@@ -27,8 +27,11 @@ export class AuthService {
 				email,
 				verified: Constants.USER.USER_VERIFIED.VERIFIED
 			}
-		})
-	)
+		});
+		user.logged_in = Constants.USER.LOGGED_IN.IN;
+		user.save();
+		return user;
+	}
 
 	findByEmail(email: string) {
 		return this.userModel.findOne({
