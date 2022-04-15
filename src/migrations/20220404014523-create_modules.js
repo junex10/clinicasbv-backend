@@ -17,8 +17,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      status: constants.STATUS,
-      ...constants.DATES_CONTROL
+      status: constants.STATUS
     });
   },
 

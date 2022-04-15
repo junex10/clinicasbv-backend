@@ -9,42 +9,42 @@ import {
 })
 export class Person extends Model {
 
-    @Column
-    name: string;
+  @Column
+  name: string;
 
-    @Column
-    lastname: string;
+  @Column
+  lastname: string;
 
-    @Column
-    user_id: number;
+  @Column
+  user_id: number;
 
-    @Column
-    medical_history: number;
+  @Column
+  medical_history: number;
 
-    @Column
-    age: number;
+  @Column
+  age: number;
 
-    @Column
-    birthdate: Date;
+  @Column
+  birthdate: Date;
 
-    @Column
-    document: string;
+  @Column
+  document: string;
 
-    @Column
-    phone: string;
+  @Column
+  phone: string;
 
-    @Column
-    address: string;
+  @Column
+  address: string;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @CreatedAt
+  @Column
+  created_at: Date;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
+  @UpdatedAt
+  @Column
+  updated_at: Date;
 
-    @DeletedAt
-    @Column
-    deleted_at: Date;
+  @DeletedAt
+  @Column
+  deleted_at: Date;
 }

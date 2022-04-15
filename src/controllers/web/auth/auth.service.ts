@@ -1,6 +1,6 @@
 import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { User, PasswordReset, Modules } from "src/models";
+import { User, PasswordReset, Modules, Permissions } from "src/models";
 import { MailerService } from '@nestjs-modules/mailer';
 import { RecoverParams, ResetParams, RegisterParams } from './auth.entity';
 import { Constants, Hash, Globals } from 'src/utils';
@@ -18,14 +18,17 @@ export class AuthService {
 
 	}
 
-	findUserVerified(email: string) {
-		return this.userModel.findOne({
+	findUserVerified = (email: string) => (
+		this.userModel.findOne({
+			include: [{
+				model: Permissions
+			}],
 			where: {
 				email,
 				verified: Constants.USER.USER_VERIFIED.VERIFIED
 			}
-		});
-	}
+		})
+	)
 
 	findByEmail(email: string) {
 		return this.userModel.findOne({

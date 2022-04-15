@@ -2,16 +2,16 @@ import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize
 
 @Table({
   timestamps: true,
-  paranoid: true,
-  tableName: 'notification_types'
+  paranoid: false,
+  tableName: 'process'
 })
-export class NotificationType extends Model {
+export class Process extends Model {
 
   @Column
-  name: string;
+  description: string;
 
   @Column
-  code: string;
+  link: string;
 
   @CreatedAt
   @Column

@@ -21,8 +21,7 @@ module.exports = {
           model: 'users',
           key: 'id'
         }
-      },
-      ...constants.DATES_CONTROL
+      }
     });
   },
 

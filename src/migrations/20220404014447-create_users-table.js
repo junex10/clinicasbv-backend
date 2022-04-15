@@ -38,10 +38,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      google: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
       facebook_id: {
         type: Sequelize.STRING,
         allowNull: true

@@ -6,24 +6,24 @@ import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize
   paranoid: true
 })
 export class PasswordReset extends Model {
-    @Column
-    user_id: number;
+  @Column
+  user_id: number;
 
-    @Column
-    code: string;
+  @Column
+  code: string;
 
-    @Column
-    status: number;
+  @Column
+  status: number;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @CreatedAt
+  @Column
+  created_at: Date;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
+  @UpdatedAt
+  @Column
+  updated_at: Date;
 
-    @DeletedAt
-    @Column
-    deleted_at: Date;
+  @DeletedAt
+  @Column
+  deleted_at: Date;
 }

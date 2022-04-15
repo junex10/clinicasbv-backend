@@ -3,25 +3,25 @@ import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize
 @Table({
   timestamps: true,
   paranoid: true,
-  tableName: 'level'
+  tableName: 'levels'
 })
 export class Level extends Model {
 
-    @Column
-    name: string;
+  @Column
+  name: string;
 
-    @Column
-    code: string;
+  @Column
+  code: string;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @CreatedAt
+  @Column
+  created_at: Date;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
+  @UpdatedAt
+  @Column
+  updated_at: Date;
 
-    @DeletedAt
-    @Column
-    deleted_at: Date;
+  @DeletedAt
+  @Column
+  deleted_at: Date;
 }

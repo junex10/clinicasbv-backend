@@ -21,8 +21,7 @@ module.exports = {
       code: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      ...constants.DATES_CONTROL
+      }
     });
   },
 

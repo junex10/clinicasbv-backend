@@ -1,6 +1,6 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, BelongsTo } from "sequelize-typescript";
+import { Column, Model, Table, BelongsTo } from "sequelize-typescript";
 import {
-    Modules
+  Modules
 } from '.';
 
 @Table({
@@ -10,21 +10,13 @@ import {
 })
 export class Actions extends Model {
 
-    @BelongsTo(() => Modules, 'module_id')
-    modules: Modules;
+  @BelongsTo(() => Modules, 'module_id')
+  module: Modules;
 
-    @Column
-    code: string;
+  @Column
+  name: string;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @Column
+  code: string;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
-
-    @DeletedAt
-    @Column
-    deleted_at: Date;
 }

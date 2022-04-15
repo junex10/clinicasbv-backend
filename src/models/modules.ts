@@ -1,4 +1,4 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize-typescript";
+import { Column, Model, Table } from "sequelize-typescript";
 
 @Table({
   timestamps: true,
@@ -7,24 +7,15 @@ import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize
 })
 export class Modules extends Model {
 
-    @Column
-    name: string;
+  @Column
+  name: string;
 
-    @Column
-    icon: string;
+  @Column
+  icon: string;
 
-    @Column
-    code: string;
+  @Column
+  code: string;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
-
-    @UpdatedAt
-    @Column
-    updated_at: Date;
-
-    @DeletedAt
-    @Column
-    deleted_at: Date;
+  @Column
+  status: number;
 }

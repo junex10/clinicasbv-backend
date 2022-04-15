@@ -1,8 +1,19 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, BelongsTo } from "sequelize-typescript";
+import { Column, Model, Table, BelongsTo, DefaultScope } from "sequelize-typescript";
 import {
-    Modules,
-    User
+  Actions,
+  Modules
 } from '.';
+
+@DefaultScope(() => ({
+  include: [{
+    model: Actions,
+    attributes: ['id', 'name', 'code'],
+    include: [{
+      model: Modules,
+      attributes: ['id', 'name', 'icon', 'code', 'status']
+    }]
+  }]
+}))
 
 @Table({
   timestamps: true,
@@ -11,21 +22,13 @@ import {
 })
 export class Permissions extends Model {
 
-    @BelongsTo(() => Modules, 'module_id')
-    modules: Modules;
+  @Column
+  action_id: number;
 
-    @BelongsTo(() => User, 'user_id')
-    user: User;
+  @BelongsTo(() => Actions, 'action_id')
+  actions: Actions[];
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @Column
+  user_id: number;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
-
-    @DeletedAt
-    @Column
-    deleted_at: Date;
 }

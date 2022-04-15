@@ -1,6 +1,14 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, HasOne, HasMany } from "sequelize-typescript";
+import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, HasMany, BelongsTo, DefaultScope } from "sequelize-typescript";
 import {
+  Permissions,
+  Level
 } from '.';
+
+@DefaultScope(() => ({
+  include: [{
+    model: Level
+  }]
+}))
 
 @Table({
   timestamps: true,
@@ -9,48 +17,57 @@ import {
 })
 export class User extends Model {
 
-    @Column
-    email: string;
+  @Column
+  email: string;
 
-    @Column
-    password: string;
+  @Column
+  password: string;
 
-    @Column
-    level_id: number;
+  @Column
+  level_id: number;
 
-    @Column
-    facebook: number;
+  @BelongsTo(() => Level, 'level_id')
+  level: Level;
 
-    @Column
-    facebook_id: string;
+  @Column
+  token: string;
 
-    @Column
-    google: number;
+  @Column
+  facebook: number;
 
-    @Column
-    google_id: string;
+  @Column
+  google: number;
 
-    @Column
-    photo: string;
+  @Column
+  google_id: string;
 
-    @Column
-    logged_in: number;
+  @Column
+  facebook_id: string;
 
-    @Column
-    verified: number;
+  @Column
+  photo: string;
 
-    @Column
-    status: number;
+  @Column
+  logged_in: number;
 
-    @CreatedAt
-    @Column
-    created_at: Date;
+  @Column
+  verified: number;
 
-    @UpdatedAt
-    @Column
-    updated_at: Date;
+  @Column
+  status: number;
 
-    @DeletedAt
-    @Column
-    deleted_at: Date;
+  @HasMany(() => Permissions, 'user_id')
+  permissions: Permissions[];
+
+  @CreatedAt
+  @Column
+  created_at: Date;
+
+  @UpdatedAt
+  @Column
+  updated_at: Date;
+
+  @DeletedAt
+  @Column
+  deleted_at: Date;
 }

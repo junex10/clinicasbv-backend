@@ -22,6 +22,11 @@ import {
   Notifications,
   NotificationType,
   PasswordReset,
+  Permissions,
+  Person,
+  Actions,
+  CompanyInformation,
+  Menu
 } from './models';
 
 @Module({
@@ -35,7 +40,12 @@ import {
         Modules,
         Notifications,
         NotificationType,
-        PasswordReset
+        PasswordReset,
+        Permissions,
+        Person,
+        Actions,
+        CompanyInformation,
+        Menu
       ]
     }),
     MailerModule.forRoot(MAIL_CONFIG),

@@ -26,7 +26,7 @@ export class AuthController {
 	async login(@Body() request: LoginParams, @Res() response: Response) {
 		try {
 			const user = await this.authService.findUserVerified(request.email);
-			const errorMessage = 'Las credenciales ingresadas son incorrectas y/o la cuenta no está verificada, intente nuevamente'
+			const errorMessage = 'Las credenciales ingresadas son incorrectas y/o la cuenta no está verificada, intente nuevamente';
 			if (!user) {
 				return response.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
 					error: errorMessage
@@ -35,10 +35,24 @@ export class AuthController {
 
 			if (await Hash.check(request.password, user.password)) {
 
-				const token = JWTAuth.createToken({ user });
+				const permissions = user.permissions;
+				const userFilter = {
+					id: user.id,
+					email: user.email,
+					level: user.level,
+					google: user.google,
+					google_id: user.google_id,
+					facebook_id: user.facebook_id,
+					facebook: user.facebook,
+					photo: user.photo,
+					logged_in: user.logged_in,
+					verified: user.verified,
+					status: user.status
+				};
+				const token = JWTAuth.createToken({ permissions });
 				return response.status(HttpStatus.OK).json({
-					user: {
-						user,
+					data: {
+						user: userFilter,
 						...token
 					}
 				});
