@@ -1,8 +1,7 @@
 import { Column, Model, Table } from "sequelize-typescript";
 
 @Table({
-  timestamps: true,
-  paranoid: true,
+  timestamps: false,
   tableName: 'modules'
 })
 export class Modules extends Model {

@@ -4,8 +4,7 @@ import {
 } from '.';
 
 @Table({
-  timestamps: true,
-  paranoid: true,
+  timestamps: false,
   tableName: 'actions'
 })
 export class Actions extends Model {

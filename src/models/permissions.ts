@@ -16,8 +16,7 @@ import {
 }))
 
 @Table({
-  timestamps: true,
-  paranoid: false,
+  timestamps: false,
   tableName: 'permissions'
 })
 export class Permissions extends Model {
