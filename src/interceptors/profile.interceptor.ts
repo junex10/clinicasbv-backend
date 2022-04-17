@@ -6,7 +6,7 @@ import { JWTAuth, Constants } from 'src/utils';
 export class ProfileInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const auth = context.getArgs()[0]?.headers?.authorization;
-    if (auth !== '') {
+    if (auth !== '' && auth !== undefined) {
       const jwt = JWTAuth.readToken(auth)?.permissions;
       const main = jwt.filter(x => (x.actions.main === Constants.ACTIONS.MAIN) && (x.actions.code === Constants.MODULES.PROFILE));
       if (main.length === 0) {
