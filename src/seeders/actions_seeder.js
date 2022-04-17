@@ -10,24 +10,28 @@ module.exports = {
     const items = [
       {
         id: 1,
+        main: Constants.SEEDERS.ACTIONS.MAIN,
         module_id: Constants.SEEDERS.MODULES.PROFILE,
         name: 'Ver perfil',
-        code: 'auth/show-profile'
+        code: '/profile'
       },
       {
         id: 2,
+        main: Constants.SEEDERS.ACTIONS.NO_MAIN,
         module_id: Constants.SEEDERS.MODULES.PROFILE,
         name: 'Editar perfil',
         code: 'auth/edit-profile'
       },
       {
         id: 3,
+        main: Constants.SEEDERS.ACTIONS.NO_MAIN,
         module_id: Constants.SEEDERS.MODULES.PROFILE,
         name: 'Crear perfil',
         code: 'auth/edit-profile'
       },
       {
         id: 4,
+        main: Constants.SEEDERS.ACTIONS.NO_MAIN,
         module_id: Constants.SEEDERS.MODULES.PROFILE,
         name: 'Exportar perfil',
         code: 'auth/edit-profile'

@@ -1,4 +1,15 @@
-import { Controller, Post, Res, HttpStatus, Body, UseInterceptors, UploadedFile, Param, Get, UnprocessableEntityException, UseFilters } from '@nestjs/common';
+import {
+	Controller,
+	Post,
+	Res,
+	HttpStatus,
+	Body,
+	UseInterceptors,
+	UploadedFile,
+	Param,
+	UnprocessableEntityException,
+	UseFilters
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
@@ -8,20 +19,21 @@ import {
 	RecoverParams,
 	CheckCodeParams,
 	ResetParams,
-	VerifyUserDTO
+	VerifyUserDTO,
+	PermissionDTO
 } from './auth.entity';
 import { AuthService } from './auth.service';
-import { Constants, Hash, UploadFile, JWTAuth, HttpExceptionFilter } from 'src/utils';
+import { Constants, Hash, UploadFile, JWTAuth } from 'src/utils';
+import { ProfileInterceptor } from 'src/interceptors';
 
 @ApiTags('Auth')
-@UseFilters(HttpExceptionFilter)
+@UseInterceptors(ProfileInterceptor)
 @Controller('api/auth')
 export class AuthController {
 
 	constructor(private readonly authService: AuthService) {
 
 	}
-
 	@Post('/login')
 	async login(@Body() request: LoginParams, @Res() response: Response) {
 		try {
@@ -35,7 +47,7 @@ export class AuthController {
 
 			if (await Hash.check(request.password, user.password)) {
 
-				const permissions = user.permissions;
+				const permissions = user.level.permissions;
 				const userFilter = {
 					id: user.id,
 					email: user.email,
@@ -202,7 +214,26 @@ export class AuthController {
 				});
 			}
 		}
-		catch (e) { 
+		catch (e) {
+			throw new UnprocessableEntityException('Ha ocurrido un error de conexión, intente nuevamente', e.message);
+		}
+	}
+
+	@Post('checkPermissions')
+	async checkPermissions(@Res() response: Response, @Body() request: PermissionDTO) {
+		try {
+			const verified: boolean = await this.authService.checkPermissions(request.token, request.code);
+			if (!verified) {
+				return response.status(HttpStatus.OK).json({
+					error: 'No se pudo ingresar a la pantalla por falta de permisos'
+				});
+			} else {
+				return response.status(HttpStatus.OK).json({
+					message: 'Acceso permitido'
+				});
+			}
+		}
+		catch (e) {
 			throw new UnprocessableEntityException('Ha ocurrido un error de conexión, intente nuevamente', e.message);
 		}
 	}

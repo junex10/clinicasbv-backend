@@ -72,3 +72,10 @@ export class VerifyUserDTO {
     @IsNotEmpty({ message: 'El campo de código es requerido' })
     url: string;
 }
+export class PermissionDTO {
+    @ApiProperty({ required: true })
+    token: string;
+
+    @ApiProperty({ required: true })
+    code: string;
+}

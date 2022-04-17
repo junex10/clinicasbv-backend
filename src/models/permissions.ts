@@ -7,7 +7,7 @@ import {
 @DefaultScope(() => ({
   include: [{
     model: Actions,
-    attributes: ['id', 'name', 'code'],
+    attributes: ['id', 'name', 'code', 'main'],
     include: [{
       model: Modules,
       attributes: ['id', 'name', 'icon', 'code', 'status']
@@ -28,6 +28,6 @@ export class Permissions extends Model {
   actions: Actions[];
 
   @Column
-  user_id: number;
+  level_id: number;
 
 }

@@ -1,9 +1,9 @@
 import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { User, PasswordReset, Modules, Permissions } from "src/models";
+import { User, PasswordReset, Modules, Permissions, Level } from "src/models";
 import { MailerService } from '@nestjs-modules/mailer';
 import { RecoverParams, ResetParams, RegisterParams } from './auth.entity';
-import { Constants, Hash, Globals } from 'src/utils';
+import { Constants, Hash, Globals, JWTAuth } from 'src/utils';
 import * as moment from 'moment';
 
 @Injectable()
@@ -21,7 +21,8 @@ export class AuthService {
 	findUserVerified = async (email: string) => {
 		const user = await this.userModel.findOne({
 			include: [{
-				model: Permissions
+				model: Level,
+				include: ['permissions']
 			}],
 			where: {
 				email,
@@ -160,6 +161,15 @@ export class AuthService {
 			}
 		);
 		return user[0];
+	}
+
+	checkPermissions = async (permissions: string, code: string): Promise<boolean> => {
+		const readPermissions = JWTAuth.readToken(permissions);
+		const auth = await readPermissions.permissions.filter((value: any) => code === value.actions.code);
+		if (auth !== null) {
+			if (auth.length > 0) return true;
+		}
+		return false;
 	}
 
 	private generateURL = async () => {

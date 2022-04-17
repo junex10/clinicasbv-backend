@@ -56,9 +56,6 @@ export class User extends Model {
   @Column
   status: number;
 
-  @HasMany(() => Permissions, 'user_id')
-  permissions: Permissions[];
-
   @CreatedAt
   @Column
   created_at: Date;

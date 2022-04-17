@@ -1,4 +1,7 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt } from "sequelize-typescript";
+import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, HasMany } from "sequelize-typescript";
+import {
+  Permissions
+} from '.';
 
 @Table({
   timestamps: true,
@@ -12,6 +15,9 @@ export class Level extends Model {
 
   @Column
   code: string;
+
+  @HasMany(() => Permissions, 'level_id')
+  permissions: Permissions[];
 
   @CreatedAt
   @Column

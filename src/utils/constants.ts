@@ -15,7 +15,6 @@ enum PASSWORD_RESET_STATUS {
 	INACTIVE = 0
 }
 
-
 export default {
 	COMPANY_INFORMATION,
 	LEVELS,
@@ -37,5 +36,12 @@ export default {
 		}
 	},
 	PER_PAGE: 30,
-	PER_PAGE_WEB: 10
+	PER_PAGE_WEB: 10,
+	ACTIONS: {
+		MAIN: 1,
+		NO_MAIN: 0
+	},
+	MODULES: {
+		PROFILE: '/profile'
+	}
 }

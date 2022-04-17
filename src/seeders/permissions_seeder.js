@@ -1,5 +1,7 @@
 'use strict';
 
+const Constants = require('./constants');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
@@ -11,22 +13,22 @@ module.exports = {
       {
         id: 1,
         action_id: 1,
-        user_id: 1
+        level_id: Constants.USERS.LEVELS.ADMIN
       },
       {
         id: 2,
         action_id: 2,
-        user_id: 1
+        level_id: Constants.USERS.LEVELS.ADMIN
       },
       {
         id: 3,
         action_id: 3,
-        user_id: 1
+        level_id: Constants.USERS.LEVELS.ADMIN
       },
       {
         id: 4,
         action_id: 4,
-        user_id: 1
+        level_id: Constants.USERS.LEVELS.ADMIN
       }
     ];
     queryInterface.bulkInsert('permissions',items);
@@ -35,22 +37,22 @@ module.exports = {
         {
           id: 5,
           action_id: 1,
-          user_id: 2
+          level_id: Constants.USERS.LEVELS.BOSS
         },
         {
           id: 6,
           action_id: 2,
-          user_id: 2
+          level_id: Constants.USERS.LEVELS.BOSS
         },
         {
           id: 7,
           action_id: 3,
-          user_id: 2
+          level_id: Constants.USERS.LEVELS.BOSS
         },
         {
           id: 8,
           action_id: 4,
-          user_id: 2
+          level_id: Constants.USERS.LEVELS.BOSS
         }
       ];
       queryInterface.bulkInsert('permissions',items);
@@ -59,22 +61,22 @@ module.exports = {
         {
           id: 9,
           action_id: 1,
-          user_id: 3
+          level_id: Constants.USERS.LEVELS.DOCTOR
         },
         {
           id: 10,
           action_id: 2,
-          user_id: 3
+          level_id: Constants.USERS.LEVELS.DOCTOR
         },
         {
           id: 11,
           action_id: 3,
-          user_id: 3
+          level_id: Constants.USERS.LEVELS.DOCTOR
         },
         {
           id: 12,
           action_id: 4,
-          user_id: 3
+          level_id: Constants.USERS.LEVELS.DOCTOR
         }
       ];
        queryInterface.bulkInsert('permissions',items);
@@ -83,22 +85,22 @@ module.exports = {
         {
           id: 13,
           action_id: 1,
-          user_id: 4
+          level_id: Constants.USERS.LEVELS.PATIENT
         },
         {
           id: 14,
           action_id: 2,
-          user_id: 4
+          level_id: Constants.USERS.LEVELS.PATIENT
         },
         {
           id: 15,
           action_id: 3,
-          user_id: 4
+          level_id: Constants.USERS.LEVELS.PATIENT
         },
         {
           id: 15,
           action_id: 4,
-          user_id: 4
+          level_id: Constants.USERS.LEVELS.PATIENT
         }
       ];
       queryInterface.bulkInsert('permissions',items);
@@ -107,22 +109,22 @@ module.exports = {
         {
           id: 16,
           action_id: 1,
-          user_id: 5
+          level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
           id: 17,
           action_id: 2,
-          user_id: 5
+          level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
           id: 18,
           action_id: 3,
-          user_id: 5
+          level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
           id: 19,
           action_id: 4,
-          user_id: 5
+          level_id: Constants.USERS.LEVELS.SECRETARY
         }
       ];
       return queryInterface.bulkInsert('permissions',items);

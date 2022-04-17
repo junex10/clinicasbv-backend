@@ -37,6 +37,10 @@ module.exports = {
     },
     MODULES: {
       PROFILE: 1
+    },
+    ACTIONS: {
+      MAIN: 1,
+      NO_MAIN: 0
     }
   },
   USERS: {

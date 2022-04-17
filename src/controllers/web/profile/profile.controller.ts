@@ -1,6 +1,6 @@
-import { Body, Controller, Post, Res, HttpStatus, UseInterceptors, UploadedFile, UseFilters, UnprocessableEntityException } from '@nestjs/common';
+import { Body, Controller, Post, Res, HttpStatus, UseInterceptors, UploadedFile, UnprocessableEntityException } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { Constants, HttpExceptionFilter, UploadFile } from 'src/utils';
+import { Constants, UploadFile } from 'src/utils';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { 
     UpdateUserDTO
@@ -8,7 +8,6 @@ import {
 import { Response } from 'express';
 
 @Controller('api/profile')
-@UseFilters(HttpExceptionFilter)
 export class ProfileController {
     constructor(
         private readonly profileService: ProfileService

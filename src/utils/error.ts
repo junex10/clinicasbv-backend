@@ -24,7 +24,7 @@ class HttpExceptionFilter implements ExceptionFilter {
                 status: status,
                 timestamp: new Date().toISOString(),
                 api: request.url,
-                error
+                error: message
             });
         this.logger.error(`Request API: ${request.url}\n Error: ${error}`);
         this.errorLog(message, error, request.url);

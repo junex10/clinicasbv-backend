@@ -1,14 +1,12 @@
-import { Body, Controller, HttpStatus, Param, Post, Res, UnprocessableEntityException, UseFilters } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Param, Post, Res, UnprocessableEntityException } from '@nestjs/common';
 
 import { Response } from 'express';
-import { HttpExceptionFilter } from 'src/utils';
 import { NotificationsService } from './notifications.service';
 import {
     NotificationDTO
 } from './notifications.entity';
 
 @Controller('api/notifications')
-@UseFilters(HttpExceptionFilter)
 export class NotificationsController {
     constructor(
         private readonly notificationsService: NotificationsService

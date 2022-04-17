@@ -14,11 +14,11 @@ module.exports = {
           key: 'id'
         }
       },
-      user_id: {
+      level_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: { 
-          model: 'users',
+          model: 'levels',
           key: 'id'
         }
       }

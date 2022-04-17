@@ -3,7 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as moment from 'moment';
 import { ValidationPipe, ValidationError, UnprocessableEntityException } from '@nestjs/common';
-import { Constants } from 'src/utils';
+import { Constants, HttpExceptionFilter } from 'src/utils';
 
 Date.prototype.toJSON = function () {
   return moment(this).format('YYYY-MM-DD HH:mm:ss');
@@ -28,6 +28,7 @@ async function bootstrap() {
       });
     }
   }));
+  app.useGlobalFilters(HttpExceptionFilter);
   await app.listen(process.env.PORT);
   process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 }

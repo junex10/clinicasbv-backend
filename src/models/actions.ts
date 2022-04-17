@@ -13,6 +13,9 @@ export class Actions extends Model {
   module: Modules;
 
   @Column
+  main: number;
+
+  @Column
   name: string;
 
   @Column
