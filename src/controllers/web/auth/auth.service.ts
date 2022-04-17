@@ -1,6 +1,6 @@
 import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { User, PasswordReset, Modules, Permissions, Level } from "src/models";
+import { User, PasswordReset, Modules, Permissions, Level, Person } from "src/models";
 import { MailerService } from '@nestjs-modules/mailer';
 import { RecoverParams, ResetParams, RegisterParams } from './auth.entity';
 import { Constants, Hash, Globals, JWTAuth } from 'src/utils';
@@ -13,6 +13,7 @@ export class AuthService {
 		@InjectModel(User) private userModel: typeof User,
 		@InjectModel(PasswordReset) private passwordResetModel: typeof PasswordReset,
 		@InjectModel(Modules) private moduleModel: typeof Modules,
+		@InjectModel(Person) private personModel: typeof Person,
 		private mailerService: MailerService
 	) {
 
@@ -114,29 +115,32 @@ export class AuthService {
 
 	async createUser(@Body() request: RegisterParams, file: Express.Multer.File) {
 		const user = await this.userModel.create({
-			name: request.name,
-			lastname: request.lastname,
-			phone: request.phone,
 			email: request.email,
 			password: Hash.makeSync(request.password),
 			level_id: request.level_id || Constants.LEVELS.PATIENT,
 			photo: file ? ('users/' + file.filename) : null,
-			confirmUrl: await this.generateURL(),
+			token: await this.generateURL(),
 		});
-		/*try {
+		const person = await this.personModel.create({
+			name: request.name,
+			lastname: request.lastname,
+			phone: request.phone,
+			user_id: user.id
+		});
+		try {
 			await this.mailerService.sendMail({
 				to: user.email,
 				subject: 'Confirmación de cuenta | ' + process.env.MAIL_FROM_NAME,
 				template: './register',
 				context: {
-					user: user.name,
-					confirm_url: user.confirmUrl
+					user: person.name,
+					confirm_url: user.token
 				}
 			});
 		}
 		catch (e) {
 			console.log(e);
-		}*/
+		}
 		return user;
 	}
 
