@@ -7,8 +7,7 @@ import {
 	UseInterceptors,
 	UploadedFile,
 	Param,
-	UnprocessableEntityException,
-	UseFilters
+	UnprocessableEntityException
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
@@ -24,10 +23,8 @@ import {
 } from './auth.entity';
 import { AuthService } from './auth.service';
 import { Constants, Hash, UploadFile, JWTAuth } from 'src/utils';
-import { ProfileInterceptor } from 'src/interceptors';
 
 @ApiTags('Auth')
-@UseInterceptors(ProfileInterceptor)
 @Controller('api/auth')
 export class AuthController {
 
