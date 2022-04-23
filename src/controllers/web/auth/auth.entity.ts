@@ -11,34 +11,31 @@ export class LoginParams {
 	password: string;
 }
 export class RegisterParams {
-    @ApiProperty({ required: true })
-	@IsNotEmpty({ message: 'El campo nombre es requerido' })
-    name: string;
+    @ApiProperty({ required: false })
+    name?: string;
 
-    @ApiProperty({ required: true })
-    @IsNotEmpty({ message: 'El campo apellido es requerido' })
-    lastname: string;
+    @ApiProperty({ required: false })
+    lastname?: string;
 
-    @ApiProperty({ required: true })
+    @ApiProperty({ required: false })
     @IsNotEmpty({ message: 'El campo email es requerido' })
     @IsEmail({},{ message: 'El correo electrónico no es válido' })
     @Transform(({ value }: TransformFnParams) => value.toLowerCase().trim())
     email: string;
     
-    @ApiProperty({ required: true })
-    @IsNotEmpty({ message: 'El campo telefono es requerido' })
+    @ApiProperty({ required: false })
     phone: string;
 
-    @ApiProperty({ required: true })
+    @ApiProperty({ required: false })
     @IsNotEmpty({ message: 'El campo contraseña es requerido' })
 	@MinLength(6,{ message: 'La contraseña debe tener mínimo 6 caracteres' })
     password: string;
 
-    @ApiProperty({ required: true })
+    @ApiProperty({ required: false })
     password_confirmation: string;
 
     @ApiProperty()
-    level_id: number;
+    level_id?: number;
 
     @ApiProperty()
     verified?: number;

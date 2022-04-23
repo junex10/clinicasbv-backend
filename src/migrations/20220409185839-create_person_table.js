@@ -8,11 +8,11 @@ module.exports = {
       id: Constants.PRIMARY_KEY,
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       lastname: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -24,7 +24,7 @@ module.exports = {
       },
       medical_history: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       age: {
         type: Sequelize.INTEGER,

@@ -27,6 +27,12 @@ export default {
 		LOGGED_IN: {
 			IN: 1,
 			OUT: 0
+		},
+		PERSON: {
+			MEDICAL_HISTORY: {
+				AVAILABLE: 1,
+				DISABLED: 0
+			}
 		}
 	},
 	NOTIFICATIONS: {

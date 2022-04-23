@@ -122,9 +122,10 @@ export class AuthService {
 			token: await this.generateURL(),
 		});
 		const person = await this.personModel.create({
-			name: request.name,
-			lastname: request.lastname,
-			phone: request.phone,
+			name: request.name ?? null,
+			lastname: request.lastname ?? null,
+			phone: request.phone ?? null,
+			medical_history: Constants.USER.PERSON.MEDICAL_HISTORY.DISABLED,
 			user_id: user.id
 		});
 		try {
