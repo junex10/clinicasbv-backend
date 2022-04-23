@@ -160,7 +160,7 @@ export class AuthService {
 			},
 			{
 				where: { 
-					confirmUrl: url,
+					token: url,
 					verified: Constants.USER.USER_VERIFIED.NO_VERIFIED 
 				}
 			}
