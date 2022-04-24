@@ -67,8 +67,13 @@ export class AuthService {
 			where: {
 				id: user.id
 			}
-		})
+		});
 
+		this.passwordResetModel.destroy({
+			where: { 
+				id: password.id
+			}
+		});
 		return this.passwordResetModel.update({
 			status: Constants.PASSWORD_RESET_STATUS.INACTIVE
 		}, {
@@ -87,15 +92,16 @@ export class AuthService {
 				status: Constants.PASSWORD_RESET_STATUS.ACTIVE
 			}
 		});
-
-		const code = Hash.makeSync(user.email + moment().format('YYYYMMDDHHmmss'))
-			.replace(/\//g, '')
-			.replace(/\./g, '')
-			.replace(/,/g, '');
+		
+		let code = '';
+		for (let x = 0; x < 6; x++) {
+			code += `${Globals.randomInt(0, 9)}`;
+		}
 
 		await this.passwordResetModel.create({
 			user_id: user.id,
-			code
+			code,
+			status: Constants.PASSWORD_RESET_STATUS.ACTIVE
 		});
 
 		try {

@@ -76,3 +76,7 @@ export class PermissionDTO {
     @ApiProperty({ required: true })
     code: string;
 }
+export class VerifyEmailDTO {
+    @ApiProperty({ required: true })
+    email: string;
+}

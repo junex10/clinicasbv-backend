@@ -17,5 +17,7 @@ class Globals {
 		return url.replace(SYMBOLS, '');
 	}
 	calculateAge = (birthdate: Date | string) => Math.floor((moment().unix() - moment(birthdate).unix()) / 31556926)
+
+	randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
 }
 export default new Globals()

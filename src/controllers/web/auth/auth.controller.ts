@@ -1,6 +1,7 @@
 import {
 	Controller,
 	Post,
+	Get,
 	Res,
 	HttpStatus,
 	Body,
@@ -19,7 +20,8 @@ import {
 	CheckCodeParams,
 	ResetParams,
 	VerifyUserDTO,
-	PermissionDTO
+	PermissionDTO,
+	VerifyEmailDTO
 } from './auth.entity';
 import { AuthService } from './auth.service';
 import { Constants, Hash, UploadFile, JWTAuth } from 'src/utils';
@@ -121,7 +123,9 @@ export class AuthController {
 
 			await this.authService.recover(request, user);
 
-			return response.status(HttpStatus.OK).send();
+			return response.status(HttpStatus.OK).json({
+				user
+			});
 		}
 		catch (e) {
 			throw new UnprocessableEntityException('Ha ocurrido un error de conexión, intente nuevamente', e.message);
