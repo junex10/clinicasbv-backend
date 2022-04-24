@@ -79,7 +79,7 @@ module.exports = {
           level_id: Constants.USERS.LEVELS.DOCTOR
         }
       ];
-       queryInterface.bulkInsert('permissions',items);
+      queryInterface.bulkInsert('permissions',items);
 
       items = [
         {
@@ -98,7 +98,7 @@ module.exports = {
           level_id: Constants.USERS.LEVELS.PATIENT
         },
         {
-          id: 15,
+          id: 16,
           action_id: 4,
           level_id: Constants.USERS.LEVELS.PATIENT
         }
@@ -107,22 +107,22 @@ module.exports = {
 
       items = [
         {
-          id: 16,
+          id: 17,
           action_id: 1,
           level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
-          id: 17,
+          id: 18,
           action_id: 2,
           level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
-          id: 18,
+          id: 19,
           action_id: 3,
           level_id: Constants.USERS.LEVELS.SECRETARY
         },
         {
-          id: 19,
+          id: 20,
           action_id: 4,
           level_id: Constants.USERS.LEVELS.SECRETARY
         }

@@ -55,8 +55,8 @@ module.exports = {
     LEVELS: {
       ADMIN: 1,
       BOSS: 2,
-      SECRETARY: 3,
-      DOCTOR: 4,
+      DOCTOR: 3,
+      SECRETARY: 4,
       PATIENT: 5,
     },
     STATUS: {
