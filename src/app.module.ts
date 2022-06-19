@@ -31,7 +31,9 @@ import {
   Person,
   Actions,
   CompanyInformation,
-  Menu
+  Menu,
+  Petition,
+  Process
 } from './models';
 
 @Module({
@@ -50,7 +52,9 @@ import {
         Person,
         Actions,
         CompanyInformation,
-        Menu
+        Menu,
+        Petition,
+        Process
       ]
     }),
     MailerModule.forRoot(MAIL_CONFIG),

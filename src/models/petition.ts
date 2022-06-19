@@ -6,10 +6,16 @@ import {
 
 @Table({
   timestamps: true,
-  paranoid: false,
+  paranoid: true,
   tableName: 'petition'
 })
 export class Petition extends Model {
+
+  @Column
+  user_id: number;
+
+  @Column
+  process_id: number;
 
   @BelongsTo(() => Process, 'process_id')
   process: Process;
