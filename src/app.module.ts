@@ -10,6 +10,7 @@ import { PDFModule } from './vendor/nestjs-pdf';
 const SequelizeConfig = require('./config');
 import { MAIL_CONFIG } from './utils/mailer';
 import * as path from 'path';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import {
   AuthModule,
@@ -68,7 +69,9 @@ import {
     SocketModule,
     PetitionModule,
     NotificationsModule,
-    ProfileModule
+    ProfileModule,
+
+    ScheduleModule.forRoot()
   ],
   providers: [
     SocketController
