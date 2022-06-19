@@ -6,7 +6,9 @@ import {
     UpdateUserDTO
 } from './profile.entity';
 import { Response } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Profile')
 @Controller('api/profile')
 export class ProfileController {
     constructor(

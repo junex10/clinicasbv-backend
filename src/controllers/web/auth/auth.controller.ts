@@ -21,7 +21,8 @@ import {
 	ResetParams,
 	VerifyUserDTO,
 	PermissionDTO,
-	VerifyEmailDTO
+	VerifyEmailDTO,
+	PagesDTO
 } from './auth.entity';
 import { AuthService } from './auth.service';
 import { Constants, Hash, UploadFile, JWTAuth } from 'src/utils';
@@ -58,7 +59,8 @@ export class AuthController {
 					photo: user.photo,
 					logged_in: user.logged_in,
 					verified: user.verified,
-					status: user.status
+					status: user.status,
+					person: user.person
 				};
 				const token = JWTAuth.createToken({ permissions });
 				return response.status(HttpStatus.OK).json({
@@ -238,5 +240,4 @@ export class AuthController {
 			throw new UnprocessableEntityException('Ha ocurrido un error de conexión, intente nuevamente', e.message);
 		}
 	}
-
 }

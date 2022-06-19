@@ -1,7 +1,8 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, HasMany, BelongsTo, DefaultScope } from "sequelize-typescript";
+import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, HasMany, BelongsTo, DefaultScope, HasOne } from "sequelize-typescript";
 import {
   Permissions,
-  Level
+  Level,
+  Person
 } from '.';
 
 @DefaultScope(() => ({
@@ -55,6 +56,9 @@ export class User extends Model {
 
   @Column
   status: number;
+
+  @HasOne(() => Person, 'user_id')
+  person: Person;
 
   @CreatedAt
   @Column

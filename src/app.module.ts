@@ -11,8 +11,12 @@ const SequelizeConfig = require('./config');
 import { MAIL_CONFIG } from './utils/mailer';
 import * as path from 'path';
 
-// Modulo
-import { AuthModule } from './controllers/web/auth/auth.module';
+import {
+  AuthModule,
+  PetitionModule,
+  NotificationsModule,
+  ProfileModule
+} from 'src/controllers';
 
 // Models
 import {
@@ -62,7 +66,9 @@ import {
     }),
     AuthModule,
     SocketModule,
-
+    PetitionModule,
+    NotificationsModule,
+    ProfileModule
   ],
   providers: [
     SocketController

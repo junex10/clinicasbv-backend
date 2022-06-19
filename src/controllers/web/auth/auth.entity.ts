@@ -80,3 +80,7 @@ export class VerifyEmailDTO {
     @ApiProperty({ required: true })
     email: string;
 }
+export class PagesDTO {
+    @ApiProperty()
+    pages: number;
+}
