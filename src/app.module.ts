@@ -31,7 +31,6 @@ import {
   Person,
   Actions,
   CompanyInformation,
-  Menu,
   Petition,
   Process
 } from './models';
@@ -52,7 +51,6 @@ import {
         Person,
         Actions,
         CompanyInformation,
-        Menu,
         Petition,
         Process
       ]

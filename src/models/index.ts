@@ -8,7 +8,6 @@ import { Actions } from './actions';
 import { CompanyInformation } from './company_information';
 import { Permissions } from './permissions';
 import { Person } from './person';
-import { Menu } from './menu';
 import { Petition } from './petition';
 import { Process } from './process';
 
@@ -23,7 +22,6 @@ export {
 	CompanyInformation,
 	Permissions,
 	Person,
-	Menu,
 	Petition,
 	Process
 }
