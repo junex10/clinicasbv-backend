@@ -14,10 +14,11 @@ export class PetitionService {
 	getPetitions = async (petition: PetitionsDTO) => {
 		const petitions = await this.petitionModel.findAndCountAll({
 			distinct: true,
-            col: 'id',
-            limit: Constants.PER_PAGE,
-            offset: (petition.page ?? 1 - 1) * (Constants.PER_PAGE),
-            order: [['id', 'desc']]
+            col: 'Petition.id',
+            limit: Constants.PER_PAGE_WEB,
+            offset: ((petition.page || 1) - 1) * (Constants.PER_PAGE_WEB),
+            order: [['id', 'desc']],
+            attributes: { exclude: ['updated_at', 'deleted_at'] }
 		});
 		if (petitions.rows.length > 0) {
             let data = {
@@ -25,7 +26,11 @@ export class PetitionService {
                 count: petitions.count
             };
             petitions?.rows.map((value) => {
-                data.petitions.push(value);
+                data.petitions.push({
+                    id: value.id,
+                    process: value.process.description,
+                    date: value.created_at
+                });
             });
             return data;
         }

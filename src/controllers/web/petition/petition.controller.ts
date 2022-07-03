@@ -24,7 +24,7 @@ export class PetitionController {
 
 	}
 
-    @Get('getPetitions/:user_id?/:page?')
+    @Get('getPetitions/:page?/:user_id?')
     async getPetitions(@Res() response: Response, @Param() params: PetitionsDTO) {
 		try {
 			const petitions = await this.petitionService.getPetitions(params);

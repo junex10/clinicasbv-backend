@@ -1,8 +1,14 @@
-import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, BelongsTo } from "sequelize-typescript";
+import { Column, Model, Table, CreatedAt, UpdatedAt, DeletedAt, BelongsTo, DefaultScope } from "sequelize-typescript";
 import {
   Process,
   User
 } from '.';
+
+@DefaultScope(() => ({
+  include: [{
+    model: Process
+  }]
+}))
 
 @Table({
   timestamps: true,
