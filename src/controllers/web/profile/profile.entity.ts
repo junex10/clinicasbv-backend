@@ -8,23 +8,17 @@ export class UpdateUserDTO{
     @IsNotEmpty({ message: 'El campo nombre es requerido' })
     name: string;
 
-    lastname: string;
+    lastname?: string;
 
     @IsNotEmpty({ message: 'El campo email es requerido' })
     @IsEmail({},{ message: 'El correo electrónico no es válido' })
     @Transform(({ value }: TransformFnParams) => value.toLowerCase().trim())
     email: string;
     
-    phone: string;
-
-    civil_state: string;
+    phone?: string;
     birthdate?: Date | string;
-
-    document: string;
-
-    occupation: string;
-
+    document?: string;
     new_password?: string;
-
     level_id?: number;
+    address?: string;
 }

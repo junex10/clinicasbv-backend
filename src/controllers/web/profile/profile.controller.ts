@@ -31,6 +31,5 @@ export class ProfileController {
         catch(e) {
             throw new UnprocessableEntityException('No se pudo actualizar el perfil', e.message);
         }
- 
     }
 }

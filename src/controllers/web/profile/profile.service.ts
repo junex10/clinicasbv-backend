@@ -20,14 +20,14 @@ export class ProfileService {
         const user = await this.userModel.findOne({ where: { id: request.id } });
         if (file !== undefined && user.photo !== null) {
             const PATH = `./public/storage/${user.photo}`;
-            if (fs.existsSync(PATH)) await fs.unlinkSync(PATH);
+            if (fs.existsSync(PATH)) fs.unlinkSync(PATH);
         }
         const age = Globals.calculateAge(request.birthdate);
-        const update = await this.userModel.update(
+        /*const update = await this.userModel.update(
             {
-                name: request.name,
-                lastname: request.lastname,
-                email: request.email,
+                name: request.name ?? user.person?.name,
+                lastname: request.lastname ?? user.person?.lastname,
+                email: request.email ?? user.email,
                 phone: request.phone !== 'null' ? request.phone : null,
                 photo: file !== undefined ? ('users/' + file.filename) : user.photo,
                 document: request.document !== 'null' ? request.document : null,
@@ -42,7 +42,8 @@ export class ProfileService {
                 where: { id: request.id }
             }
         )
-        if (update !== null) return await this.userModel.findOne({ where: { id: request.id } });
+        if (update !== null) return await this.userModel.findOne({ where: { id: request.id } });*/
+        console.log(request, ' AQUI ')
 
         return null;
     }
