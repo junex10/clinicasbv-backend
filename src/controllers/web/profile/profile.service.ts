@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { User } from "src/models";
+import { Person, User } from "src/models";
 import { Constants, Hash, Globals } from 'src/utils';
 import {
     UpdateUserDTO
@@ -12,6 +12,7 @@ import * as moment from 'moment';
 export class ProfileService {
     constructor(
         @InjectModel(User) private userModel: typeof User,
+        @InjectModel(Person) private personModel: typeof Person,
     ) {
 
     }
@@ -23,27 +24,32 @@ export class ProfileService {
             if (fs.existsSync(PATH)) fs.unlinkSync(PATH);
         }
         const age = Globals.calculateAge(request.birthdate);
-        /*const update = await this.userModel.update(
+        const update = await this.userModel.update(
             {
-                name: request.name ?? user.person?.name,
-                lastname: request.lastname ?? user.person?.lastname,
-                email: request.email ?? user.email,
-                phone: request.phone !== 'null' ? request.phone : null,
+                name: request.name,
+                lastname: request.lastname,
+                email: request.email,
                 photo: file !== undefined ? ('users/' + file.filename) : user.photo,
-                document: request.document !== 'null' ? request.document : null,
-                civil_state: request.civil_state !== 'null' ? request.civil_state : null,
                 birthdate: request.birthdate !== null ? moment(request.birthdate).toDate() : '',
                 age,
-                occupation: request.occupation !== 'null' ? request.occupation : null,
-                password: request.new_password !== 'null' ? await Hash.makeSync(request.new_password) : user.password,
                 level_id: request.level_id ?? user.level_id
             },
             {
                 where: { id: request.id }
             }
         )
-        if (update !== null) return await this.userModel.findOne({ where: { id: request.id } });*/
-        console.log(request, ' AQUI ')
+        if (update !== null) {
+            this.personModel.update(
+                {
+                    phone: request.phone,
+                    address: request.address
+                },
+                {
+                    where: { user_id: request.id }
+                }
+            );
+            return await this.userModel.findOne({ where: { id: request.id } });
+        }
 
         return null;
     }
