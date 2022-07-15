@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from "@nestjs/sequelize";
-import { Person, User } from "src/models";
+import { Level, Person, User } from "src/models";
 import { Constants, Hash, Globals } from 'src/utils';
 import {
     UpdateUserDTO
@@ -26,8 +26,6 @@ export class ProfileService {
         const age = Globals.calculateAge(request.birthdate);
         const update = await this.userModel.update(
             {
-                name: request.name,
-                lastname: request.lastname,
                 email: request.email,
                 photo: file !== undefined ? ('users/' + file.filename) : user.photo,
                 birthdate: request.birthdate !== null ? moment(request.birthdate).toDate() : '',
@@ -39,8 +37,10 @@ export class ProfileService {
             }
         )
         if (update !== null) {
-            this.personModel.update(
+            await this.personModel.update(
                 {
+                    name: request.name,
+                    lastname: request.lastname,
                     phone: request.phone,
                     address: request.address
                 },
@@ -48,7 +48,15 @@ export class ProfileService {
                     where: { user_id: request.id }
                 }
             );
-            return await this.userModel.findOne({ where: { id: request.id } });
+            return await this.userModel.findOne(
+                { 
+                    include: [{
+                        model: Level,
+                        include: ['permissions']
+                    }, 'person'],
+                    where: { id: request.id } 
+                }
+            );
         }
 
         return null;
