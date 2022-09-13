@@ -24,7 +24,7 @@ class HttpExceptionFilter implements ExceptionFilter {
                 status: status,
                 timestamp: new Date().toISOString(),
                 api: request.url,
-                error: message
+                error: process.env.NODE_ENV === 'development' ? error : message
             });
         this.logger.error(`Request API: ${request.url}\n Error: ${error}`);
         this.errorLog(message, error, request.url);
@@ -32,10 +32,22 @@ class HttpExceptionFilter implements ExceptionFilter {
     private async errorLog(message: string, error: string, request: string) {
         const date = new Date();
         const dateString = this.dateString(date);
-        fs.writeFileSync(`./public/storage/logs/ErrorLogs.txt`, `\n[${dateString}] - ${message}\n[${dateString}] - ${error}\n[${dateString}] - ${request}`, {
-            encoding: "utf-8",
-            flag: 'a+'
-        });
+        const PATH = './public/storage/logs/ErrorLogs.txt';
+        if (fs.existsSync(PATH)) {
+            fs.writeFileSync(PATH, `\n[${dateString}] - ${message}\n[${dateString}] - ${error}\n[${dateString}] - ${request}`, {
+                encoding: "utf-8",
+                flag: 'a+'
+            });
+        } else {
+            fs.createWriteStream(PATH, {
+                encoding: 'utf-8',
+                flags: 'a+'
+            });
+            fs.writeFileSync(PATH, `\n[${dateString}] - ${message}\n[${dateString}] - ${error}\n[${dateString}] - ${request}`, {
+                encoding: "utf-8",
+                flag: 'a+'
+            });
+        }
     }
     private dateString(date: Date): string {
         return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
