@@ -19,15 +19,15 @@ export class ProfileService {
 
     update = async (request: UpdateUserDTO, file: Express.Multer.File) => {
         const user = await this.userModel.findOne({ where: { id: request.id } });
-        if (file !== undefined && user.photo !== null) {
-            const PATH = `./public/storage/${user.photo}`;
+        if (file !== undefined && user?.photo !== null) {
+            const PATH = `./public/storage/${user?.photo}`;
             if (fs.existsSync(PATH)) fs.unlinkSync(PATH);
         }
         const age = Globals.calculateAge(request.birthdate);
         const update = await this.userModel.update(
             {
                 email: request.email,
-                photo: file !== undefined ? ('users/' + file.filename) : user.photo,
+                photo: file !== undefined ? ('users/' + file.filename) : user?.photo,
                 birthdate: request.birthdate !== null ? moment(request.birthdate).toDate() : '',
                 age,
                 level_id: request.level_id ?? user.level_id

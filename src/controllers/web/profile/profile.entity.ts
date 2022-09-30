@@ -31,4 +31,6 @@ export class UpdateUserDTO {
     level_id?: number;
     @ApiProperty()
     address?: string;
+
+    photo?: any;
 }
