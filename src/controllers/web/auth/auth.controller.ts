@@ -227,7 +227,7 @@ export class AuthController {
 		try {
 			const verified: boolean = await this.authService.checkPermissions(request.token, request.code);
 			if (!verified) {
-				return response.status(HttpStatus.OK).json({
+				return response.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
 					error: 'No se pudo ingresar a la pantalla por falta de permisos'
 				});
 			} else {
