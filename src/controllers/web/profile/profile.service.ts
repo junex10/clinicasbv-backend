@@ -28,8 +28,6 @@ export class ProfileService {
             {
                 email: request.email,
                 photo: file !== undefined ? ('users/' + file.filename) : user?.photo,
-                birthdate: request.birthdate !== null ? moment(request.birthdate).toDate() : '',
-                age,
                 level_id: request.level_id ?? user.level_id
             },
             {
@@ -42,7 +40,10 @@ export class ProfileService {
                     name: request.name,
                     lastname: request.lastname,
                     phone: request.phone,
-                    address: request.address
+                    address: request.address,
+                    birthdate: request.birthdate !== null ? moment(request.birthdate).toDate() : '',
+                    age,
+                    medical_history: 0
                 },
                 {
                     where: { user_id: request.id }
